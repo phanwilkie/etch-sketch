@@ -1,0 +1,22 @@
+.header {
+    margin-top: 20px;
+    margin-bottom: 20px;
+} 
+
+.grid-container {
+    gap: 20px;
+}
+
+.grid-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.grid-row, .grid-column {
+    border-style: solid;
+    padding: 10px;
+}
+
+/* normal grid */
+
+/* hover grid */
