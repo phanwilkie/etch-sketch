@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proportional Grid Example with Mouseenter</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .grid {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .gridRow {
+      width: 100%;
+      box-sizing: border-box;
+      display: flex;
+    }
+
+    .gridColumn {
+      width: 25%;
+      padding: 10px;
+      box-sizing: border-box;
+      transition: background-color 0.3s ease;
+    }
+
+    /* Some additional styles for demonstration purposes */
+    .gridRow {
+      background-color: #f0f0f0;
+      border: 1px solid #ddd;
+      margin-bottom: 10px;
+    }
+
+    .gridColumn {
+      border: 1px solid #ccc;
+    }
+
+    /* Hover effect */
+    .gridColumn:hover {
+      background-color: lightblue;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="grid">
+    <!-- Example with 4 columns per row -->
+    <div class="gridRow">
+      <div class="gridColumn">Column 1</div>
+      <div class="gridColumn">Column 2</div>
+      <div class="gridColumn">Column 3</div>
+      <div class="gridColumn">Column 4</div>
+    </div>
+
+    <!-- Add more rows with the same structure as needed -->
+    <!-- ... -->
+
+  </div>
+
+  <script>
+    // Using querySelector to select elements by class
+    const columns = document.querySelectorAll('.gridColumn');
+
+    // Adding mouseenter event listener to each selected column
+    columns.forEach(column => {
+      column.addEventListener('mouseenter', () => {
+        // Change the background color on mouseenter
+        column.style.backgroundColor = 'lightblue';
+      });
+
+      // Adding mouseleave event listener to reset the background color on mouseleave
+    //   column.addEventListener('mouseleave', () => {
+    //     // Reset the background color on mouseleave
+    //     column.style.backgroundColor = '';
+    //   });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,22 +1,27 @@
 .header {
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
+    text-align: center;
 } 
 
 .grid-container {
-    gap: 20px;
+    width: 960px;
+    height: 960px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    border-style: solid;
 }
 
 .grid-row {
     display: flex;
     justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-.grid-row, .grid-column {
-    border-style: solid;
-    padding: 10px;
+.grid-column {
+    width: 25%;
+    /* padding: 10px; */
+    box-sizing: border-box;
 }
-
-/* normal grid */
-
-/* hover grid */

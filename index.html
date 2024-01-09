@@ -11,8 +11,10 @@
 </head>
 <body>
     <div class="header">
-        <label for="tentacles">Enter the number of rows/columns for the grid (8-100):</label>
-        <input type="number" id="rowsColumns" name="row-columns" min="8" max="100" />
+        <p><h1>Cell Painter</h1></p>
+        <label for="gridSize">Enter or change the number of rows/columns for the grid (16-100):</label>
+        <input type="number" id="rowsColumns" name="row-columns" min="16" max="100" value="16" />
+        <p><button id="reset-button">Reset</button></p>
     </div>
     <div class="grid-container"></div>
 </body>

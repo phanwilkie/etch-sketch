@@ -15,12 +15,21 @@ function createGrid(gridNumber) {
             const columnDiv = document.createElement('div');
             columnDiv.className = 'grid-column grid-column-'+(j+1);
             // columnDiv.textContent = `R${i}, C${j + 1}`;
-            columnDiv.textContent = '.';
+            columnDiv.textContent = '';
 
             // Append the column div to the row div
             gridRow.appendChild(columnDiv);
         };
     };
+
+    //Add event listener on mouseenter for each div column element of each row
+    const cells = document.querySelectorAll('.grid-column');
+    cells.forEach(cell => {
+        cell.addEventListener('mouseenter', () => {
+        // console.log('mouse enter');
+        cell.style.backgroundColor = 'black';
+        });
+    });
 
 };
 
@@ -34,11 +43,18 @@ inputElement.addEventListener('input', function () {
     });
 
     const value = parseInt(inputElement.value, 10);
-    if (!isNaN(value) && value >= 8 && value <= 100) {
+    if (!isNaN(value) && value >= 16 && value <= 100) {
         // Call createGrid with the input value for both rows and columns
         createGrid(value);
     }
 });
 
 //initialise grid with the default value
-createGrid(8);
+createGrid(16);
+
+//reset button
+const resetButton = document.getElementById('reset-button');
+resetButton.addEventListener('click', function () {
+    window.location.reload()});
+
+
