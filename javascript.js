@@ -14,9 +14,9 @@ function createGrid(gridNumber) {
         for (let j = 0; j < gridNumber; j++) {
             const columnDiv = document.createElement('div');
             columnDiv.className = 'grid-column grid-column-'+(j+1);
+            columnDiv.setAttribute('colorchanged',0);
             // columnDiv.textContent = `R${i}, C${j + 1}`;
-            columnDiv.textContent = '';
-
+            // columnDiv.textContent = '';
             // Append the column div to the row div
             gridRow.appendChild(columnDiv);
         };
@@ -26,8 +26,11 @@ function createGrid(gridNumber) {
     const cells = document.querySelectorAll('.grid-column');
     cells.forEach(cell => {
         cell.addEventListener('mouseenter', () => {
-        // console.log('mouse enter');
-        cell.style.backgroundColor = 'black';
+        const randomColor = getColor();
+            if (cell.getAttribute('colorchanged') === "0") {
+                cell.style.backgroundColor = `${randomColor}`; 
+                cell.setAttribute('colorChanged',1);
+            };
         });
     });
 
@@ -57,4 +60,16 @@ const resetButton = document.getElementById('reset-button');
 resetButton.addEventListener('click', function () {
     window.location.reload()});
 
+
+//to do
+//random colour effect instead of black
+function getColor() {
+    const randomNumber1 = Math.floor(Math.random()*256);
+    const randomNumber2 = Math.floor(Math.random()*256);
+    const randomNumber3 = Math.floor(Math.random()*256);
+    const randomColor = 'rgb('+randomNumber1+', '+randomNumber2+', '+randomNumber3+')';
+    return randomColor;
+}
+
+//darkening effect from 10-100%
 
