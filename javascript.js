@@ -23,11 +23,14 @@ function createGrid(gridNumber) {
     const cells = document.querySelectorAll('.grid-column');
     cells.forEach(cell => {
         cell.addEventListener('mouseenter', () => {
-            //check color mode
+            //if color mode paint it black
             if (gridContainer.getAttribute('colorMode') === "0") {
-                cell.style.backgroundColor = 'rgb(' + 0 + ',' + 0 + ',' + 0 + ')';
+                if (cell.getAttribute('colorchanged') === "0") { 
+                    cell.style.backgroundColor = 'rgb(' + 230 + ',' + 230 + ',' + 230 + ')';
+                    cell.setAttribute('colorChanged',1);
+                }
             } else {
-            //if color
+            //if color paint it with rainbow
                 const randomColor = getColor();
                 if (cell.getAttribute('colorchanged') === "0") {
                     cell.style.backgroundColor = `${randomColor}`; 
@@ -37,6 +40,16 @@ function createGrid(gridNumber) {
         });
     });
 
+    // //Add event listener for mouse click to darken the color
+    cells.forEach(cell => {
+            cell.addEventListener('click', () => {
+                if (gridContainer.getAttribute('colorMode') === "0") {
+                    if (cell.style.backgroundColor != 'rgb(0, 0, 0)') {
+                    cell.style.backgroundColor = darkenColor(cell.style.backgroundColor);
+                    };                   
+                };
+                })
+            });
 };
 
 //Add event listener to the input element
@@ -83,7 +96,6 @@ resetButton.addEventListener('click', function () {
     window.location.reload()});
 
 
-//to do
 //random colour effect instead of black
 function getColor() {
     const randomNumber1 = Math.floor(Math.random()*256);
@@ -93,12 +105,18 @@ function getColor() {
     return randomColor;
 }
 
-function darkenColor() {
+function darkenColor(originalColor) {
+    const oldColor = originalColor;
+    const numbersArray = oldColor.match(/\d+/g).map(Number);
+    const newNumbersArray = numbersArray.map(number => Math.round(number * 0.9));
+    const newColor = 'rgb(' + newNumbersArray[0] + ', ' + newNumbersArray[1] + ', ' + newNumbersArray[2] + ')';
+    return newColor;
+
     //convert string into numbers
     //increase darkness
     //parse new rgb value
     //on click only
-}
+};
 
 //darkening effect from 10-100%
 
