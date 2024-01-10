@@ -57,24 +57,22 @@ inputElement.addEventListener('input', function () {
 
 //Add event listener to toggle between mono/color mode & append grind-container's property
 const toggleButton = document.getElementById('toggleMode');
-const gridContainer = document.querySelector('.grid-container');
+// const gridContainer = document.querySelector('.grid-container');
 toggleButton.addEventListener('change', function() {
+    const gridContainer = document.querySelector('.grid-container');
+    const resetColumns = document.querySelectorAll('.grid-column')
+
+    resetColumns.forEach(column => {
+        column.setAttribute('colorchanged','0');
+        column.removeAttribute('style');
+    });
     if (toggleButton.checked) {
         gridContainer.setAttribute('colorMode',1);
-        //reset colors
+        
     } else {
-        const gridContainer = document.querySelector('.grid-container');
         gridContainer.setAttribute('colorMode',0);
-        //reset colors
-
     };
 });
-
-//need to delete all the background color when toggled
-//if on update property to 1
-
-//if off update property to 0
-
 
 //initialise grid with the default value
 createGrid(16);
