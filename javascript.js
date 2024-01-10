@@ -7,7 +7,7 @@ function createGrid(gridNumber) {
         const gridRow = document.createElement('div');
         const gridRowNo = 'grid-row grid-row-'+i;
 
-        gridRow.setAttribute('class',gridRowNo); //need to increment class
+        gridRow.setAttribute('class',gridRowNo);
         gridContainer.appendChild(gridRow);
 
         //for each row, create the same number of columns
@@ -15,9 +15,6 @@ function createGrid(gridNumber) {
             const columnDiv = document.createElement('div');
             columnDiv.className = 'grid-column grid-column-'+(j+1);
             columnDiv.setAttribute('colorchanged',0);
-            // columnDiv.textContent = `R${i}, C${j + 1}`;
-            // columnDiv.textContent = '';
-            // Append the column div to the row div
             gridRow.appendChild(columnDiv);
         };
     };
@@ -26,11 +23,17 @@ function createGrid(gridNumber) {
     const cells = document.querySelectorAll('.grid-column');
     cells.forEach(cell => {
         cell.addEventListener('mouseenter', () => {
-        const randomColor = getColor();
-            if (cell.getAttribute('colorchanged') === "0") {
-                cell.style.backgroundColor = `${randomColor}`; 
-                cell.setAttribute('colorChanged',1);
-            };
+            //check color mode
+            if (gridContainer.getAttribute('colorMode') === "0") {
+                cell.style.backgroundColor = 'rgb(' + 0 + ',' + 0 + ',' + 0 + ')';
+            } else {
+            //if color
+                const randomColor = getColor();
+                if (cell.getAttribute('colorchanged') === "0") {
+                    cell.style.backgroundColor = `${randomColor}`; 
+                    cell.setAttribute('colorChanged',1);
+                };
+            }
         });
     });
 
@@ -52,6 +55,27 @@ inputElement.addEventListener('input', function () {
     }
 });
 
+//Add event listener to toggle between mono/color mode & append grind-container's property
+const toggleButton = document.getElementById('toggleMode');
+const gridContainer = document.querySelector('.grid-container');
+toggleButton.addEventListener('change', function() {
+    if (toggleButton.checked) {
+        gridContainer.setAttribute('colorMode',1);
+        //reset colors
+    } else {
+        const gridContainer = document.querySelector('.grid-container');
+        gridContainer.setAttribute('colorMode',0);
+        //reset colors
+
+    };
+});
+
+//need to delete all the background color when toggled
+//if on update property to 1
+
+//if off update property to 0
+
+
 //initialise grid with the default value
 createGrid(16);
 
@@ -69,6 +93,13 @@ function getColor() {
     const randomNumber3 = Math.floor(Math.random()*256);
     const randomColor = 'rgb('+randomNumber1+', '+randomNumber2+', '+randomNumber3+')';
     return randomColor;
+}
+
+function darkenColor() {
+    //convert string into numbers
+    //increase darkness
+    //parse new rgb value
+    //on click only
 }
 
 //darkening effect from 10-100%

@@ -3,83 +3,73 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Proportional Grid Example with Mouseenter</title>
+  <title>Toggle Switch Example</title>
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    /* Style for the toggle switch */
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
     }
 
-    .grid {
-      max-width: 960px;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
+    .toggle-switch input {
+      display: none;
     }
 
-    .gridRow {
-      width: 100%;
-      box-sizing: border-box;
-      display: flex;
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 34px;
     }
 
-    .gridColumn {
-      width: 25%;
-      padding: 10px;
-      box-sizing: border-box;
-      transition: background-color 0.3s ease;
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
     }
 
-    /* Some additional styles for demonstration purposes */
-    .gridRow {
-      background-color: #f0f0f0;
-      border: 1px solid #ddd;
-      margin-bottom: 10px;
+    input:checked + .slider {
+      background-color: #2196F3;
     }
 
-    .gridColumn {
-      border: 1px solid #ccc;
-    }
-
-    /* Hover effect */
-    .gridColumn:hover {
-      background-color: lightblue;
+    input:checked + .slider:before {
+      transform: translateX(26px);
     }
   </style>
 </head>
 <body>
 
-  <div class="grid">
-    <!-- Example with 4 columns per row -->
-    <div class="gridRow">
-      <div class="gridColumn">Column 1</div>
-      <div class="gridColumn">Column 2</div>
-      <div class="gridColumn">Column 3</div>
-      <div class="gridColumn">Column 4</div>
-    </div>
-
-    <!-- Add more rows with the same structure as needed -->
-    <!-- ... -->
-
-  </div>
+  <label class="toggle-switch">
+    <input type="checkbox" id="toggleButton">
+    <span class="slider"></span>
+  </label>
 
   <script>
-    // Using querySelector to select elements by class
-    const columns = document.querySelectorAll('.gridColumn');
+    // Add event listener to the checkbox
+    var toggleButton = document.getElementById('toggleButton');
 
-    // Adding mouseenter event listener to each selected column
-    columns.forEach(column => {
-      column.addEventListener('mouseenter', () => {
-        // Change the background color on mouseenter
-        column.style.backgroundColor = 'lightblue';
-      });
-
-      // Adding mouseleave event listener to reset the background color on mouseleave
-    //   column.addEventListener('mouseleave', () => {
-    //     // Reset the background color on mouseleave
-    //     column.style.backgroundColor = '';
-    //   });
+    toggleButton.addEventListener('change', function() {
+      // Handle the toggle switch state change
+      if (toggleButton.checked) {
+        console.log('Toggle switch is ON');
+        // Add your logic for the ON state here
+      } else {
+        console.log('Toggle switch is OFF');
+        // Add your logic for the OFF state here
+      }
     });
   </script>
 
