@@ -83,6 +83,9 @@ toggleButton.addEventListener('change', function() {
         
     } else {
         gridContainer.setAttribute('colorMode',0);
+        const introText = document.querySelector('.intro-text');
+        introText.textContent = 'Now you can click on each square multiple times to make it darker!'
+
     };
 });
 

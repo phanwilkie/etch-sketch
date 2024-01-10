@@ -90,3 +90,8 @@
   .label {
     vertical-align: middle;
   }
+
+  .intro-text {
+    text-align: center;
+    margin-bottom: 20px;
+  }
