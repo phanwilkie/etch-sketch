@@ -70,7 +70,6 @@ inputElement.addEventListener('input', function () {
 
 //Add event listener to toggle between mono/color mode & append grind-container's property
 const toggleButton = document.getElementById('toggleMode');
-// const gridContainer = document.querySelector('.grid-container');
 toggleButton.addEventListener('change', function() {
     const gridContainer = document.querySelector('.grid-container');
     const resetColumns = document.querySelectorAll('.grid-column')
@@ -108,15 +107,7 @@ function getColor() {
 function darkenColor(originalColor) {
     const oldColor = originalColor;
     const numbersArray = oldColor.match(/\d+/g).map(Number);
-    const newNumbersArray = numbersArray.map(number => Math.round(number * 0.9));
+    const newNumbersArray = numbersArray.map(number => Math.round(number - (230/9)));
     const newColor = 'rgb(' + newNumbersArray[0] + ', ' + newNumbersArray[1] + ', ' + newNumbersArray[2] + ')';
     return newColor;
-
-    //convert string into numbers
-    //increase darkness
-    //parse new rgb value
-    //on click only
 };
-
-//darkening effect from 10-100%
-
